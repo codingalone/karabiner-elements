@@ -1,0 +1,57 @@
+{
+  "title": "Fix Thinkpad Bluetooth keyboard keycode",
+  "rules": [
+    {
+      "description": "Fix issue tab sending left_shift with cmd+shift held",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "left_shift",
+            "modifiers": {
+              "mandatory": [
+                "left_gui",
+                "right_shift"
+              ]
+            },
+            "simultaneous": [
+              {}
+            ]
+          },
+          "to": [
+            {
+              "key_code": "tab"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "spacebar"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Change left_shift to right_shift while cmd is held",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [
+                "left_gui"
+              ]
+            },
+            "key_code": "left_shift"
+          },
+          "to": [
+            {
+              "repeat": false,
+              "key_code": "right_shift"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
